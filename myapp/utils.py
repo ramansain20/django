@@ -1,6 +1,5 @@
 import cv2 as cv
 import numpy as np
-from  django.conf import settings
 def util(image_path):
     image = cv.imread(image_path)
     edge_image = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
@@ -13,7 +12,7 @@ def util(image_path):
     wallCoordinates=[]
     for line in lines:
         x1,y1,x2,y2=line[0]
-        wallCoordinates.append([x1,y1,x2,y2])
+        wallCoordinates.append({"x1":str(x1),"y1":str(y1),"x2":str(x2),"y2":str(y2)})
     return wallCoordinates
 
 

@@ -1,26 +1,22 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from django.conf import settings
 from . import models
 from .utils import util
+import json
 # Create your views here.
 def index(request):
-    
-    return render(request,"index.html")
+    return HttpResponse("Hello World!")
 
 def upload(request):
+    print(request.POST)
     if request.method == "POST":
         name = request.POST.get("name")
         image = request.FILES["image"]
         floorimage = models.FloorImage(name=name,image=image)
         floorimage.save()
-        return redirect("/data")
-    return render(request,"upload.html")
+        coordinates=util(image_path = settings.MEDIA_ROOT + "/"+str(floorimage.image) )
+    return JsonResponse(coordinates,safe=False)
 
-
-def data(request):
-    
-    coordinates=util(image_path = settings.MEDIA_ROOT + "/uploads/PNG.png" )
-    return render(request,"data.html",{"coordinates":coordinates})
 
     
