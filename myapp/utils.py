@@ -13,5 +13,5 @@ def util(image_path):
     for line in lines:
         x1,y1,x2,y2=line[0]
         wallCoordinates.append({"x1":str(x1),"y1":str(y1),"x2":str(x2),"y2":str(y2)})
-    data={"wallCoordinates":wallCoordinates,"dimensions":{"width":str(image.shape[1]),"height":str(image.shape[0])}}
+    data={"wallCoordinates":wallCoordinates,"dimensions":{"width":str(image.shape[0]),"height":str(image.shape[1])}}
     return data
