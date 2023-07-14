@@ -15,8 +15,8 @@ def upload(request):
         image = request.FILES["image"]
         floorimage = models.FloorImage(name=name,image=image)
         floorimage.save()
-        coordinates=util(image_path = settings.MEDIA_ROOT + "/"+str(floorimage.image) )
-    return JsonResponse(coordinates,safe=False)
+        data=util(image_path = settings.MEDIA_ROOT + "/"+str(floorimage.image) )
+    return JsonResponse(data,safe=False)
 
 
     
